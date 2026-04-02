@@ -7,18 +7,11 @@ This project simulates an **Amazon-like recommendation engine** with:
 - 🎯 Similar product recommendations
 - 🛒 Frequently bought together items
 
----
 
-## 🌐 Live Demo
-
-🚀 **Deployed App:**  
-👉 https://your-render-link-here.com  
-
----
 
 ## 📸 App Preview
 
-![App Screenshot](./screenshot.png)
+![App Screenshot](./Screenshot.png)
 
 ---
 
@@ -27,7 +20,7 @@ This project simulates an **Amazon-like recommendation engine** with:
 This project uses the official Amazon dataset:
 
 🔗 **Dataset Source:**  
-👉 :contentReference[oaicite:0]{index=0}  
+👉 [Amazon Review Dataset](https://jmcauley.ucsd.edu/data/amazon_v2/index.html)
 
 ### 📌 Details:
 - 📦 **233.1 Million Reviews**
@@ -35,24 +28,24 @@ This project uses the official Amazon dataset:
 - 👤 Includes:
   - User reviews & ratings
   - Product metadata
-  - Product relationships (also_buy, also_view)
+  - Product relationships 
 
 ### 📂 Category Used:
 - Clothing, Shoes & Jewelry
   - ~32M reviews
-  - ~2.6M products
+  
 
 ---
 
 ## 🧠 System Architecture
 User Query
-↓
+   ↓
 Text Preprocessing
-↓
+   ↓
 TF-IDF Vectorization
-↓
+   ↓
 Cosine Similarity
-↓
+   ↓
 Top Relevant Products
 
 ---
@@ -172,13 +165,13 @@ streamlit run app.py
 
 📦 Model Files
 
-The app automatically downloads required files using Google Drive:
+The app automatically downloads required files:
 
-df_cb.pkl
-cv.pkl
-vectors.pkl
-indices.pkl
-co_occurrence.pkl
+- df_cb.pkl
+- cv.pkl
+- vectors.pkl
+- indices.pkl
+- co_occurrence.pkl
 
 🧠 Key Concepts Used
 Content-Based Filtering
@@ -187,20 +180,31 @@ TF-IDF Vectorization
 Association Rules (Co-occurrence)
 Information Retrieval
 
+## 🚀 Deployment
 
-🚀 Deployment
+This project is currently designed for local execution.
 
-This project is deployed using:
+In future, it can be deployed using platforms like:
 
-GitHub
-Rende
+- Streamlit Cloud  
+- Render  
+- AWS / Cloud-based servers  
+
+### 📌 Note:
+Due to large model files and dataset size, deployment requires optimization such as:
+- Reducing model size  
+- Preloading model artifacts on server  
+- Using efficient storage solutions (e.g., cloud storage/CDN)  
 
 
 🚀 Future Improvements
-🔄 Add Collaborative Filtering (User-based)
-🤖 Hybrid Recommendation System
-💰 Add price & filters
-🎨 Improve UI (Amazon-style cards)
+- 🎨 Improve UI to match real e-commerce platforms (Amazon-like design)
+- 🖼️ Fix broken/invalid product image URLs
+- 🧠 Add better fallback for missing images (default placeholder)
+- ⚡ Optimize performance for faster loading
+- 🔄 Add Collaborative Filtering (User-based)
+- 🤖 Build Hybrid Recommendation System
+- 💰 Add price filters and sorting
 
 
 📚 Citation
