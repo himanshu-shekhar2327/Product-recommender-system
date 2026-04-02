@@ -162,9 +162,10 @@ pip install -r requirements.txt
 
 # Run app
 streamlit run app.py
+ 
 ```
-
-📦 Model Files
+---
+### 📦 Model Files
 
 The app automatically downloads required files:
 
@@ -174,12 +175,16 @@ The app automatically downloads required files:
 - indices.pkl
 - co_occurrence.pkl
 
-🧠 Key Concepts Used
-Content-Based Filtering
-Cosine Similarity
-TF-IDF Vectorization
-Association Rules (Co-occurrence)
-Information Retrieval
+## 🧠 Key Concepts Used
+
+- Content-Based Filtering  
+- Cosine Similarity  
+- TF-IDF Vectorization  
+- Association Rules (Co-occurrence)  
+- Information Retrieval  
+
+---
+
 
 ## 🚀 Deployment
 
@@ -191,14 +196,19 @@ In future, it can be deployed using platforms like:
 - Render  
 - AWS / Cloud-based servers  
 
+---
+
+
 ### 📌 Note:
 Due to large model files and dataset size, deployment requires optimization such as:
 - Reducing model size  
 - Preloading model artifacts on server  
 - Using efficient storage solutions (e.g., cloud storage/CDN)  
 
+---
 
-🚀 Future Improvements
+## 🚀 Future Improvements
+
 - 🎨 Improve UI to match real e-commerce platforms (Amazon-like design)
 - 🖼️ Fix broken/invalid product image URLs
 - 🧠 Add better fallback for missing images (default placeholder)
@@ -208,21 +218,27 @@ Due to large model files and dataset size, deployment requires optimization such
 - 💰 Add price filters and sorting
 
 
-📚 Citation
+---
 
-Jianmo Ni, Jiacheng Li, Julian McAuley
-Justifying recommendations using distantly-labeled reviews and fine-grained aspects
-EMNLP 2019
+## 📚 Citation
 
-👨‍💻 Author
+Jianmo Ni, Jiacheng Li, Julian McAuley  
+*Justifying recommendations using distantly-labeled reviews and fine-grained aspects*  
+EMNLP 2019  
 
-Himanshu Shekhar
-B.Tech CSE | Machine Learning Enthusiast
+---
 
-⭐ Support
+## 👨‍💻 Author
+
+**Himanshu Shekhar**  
+B.Tech CSE | Machine Learning Enthusiast  
+
+---
+
+## ⭐ Support
 
 If you like this project:
 
-⭐ Star this repo
-🍴 Fork it
-🚀 Share it
+- ⭐ Star this repo  
+- 🍴 Fork it  
+- 🚀 Share it  
