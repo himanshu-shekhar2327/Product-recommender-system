@@ -4,43 +4,48 @@ import pickle
 import re
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-
-
-
 import os
 import gdown
 
-def download_file(file_id, output):
-    if not os.path.exists(output):
-        url = f"https://drive.google.com/uc?id={file_id}"
-        gdown.download(url, output, quiet=False)
-
-# 🔥 Download required files
-download_file("1aX1nG0veHY7ydmeBGKNTT9nXCMc41Cqf", "df_cb.pkl")
-download_file("1ZQtSeT4l7nFwHKcUMxdJYw207gW4LQ3x", "cv.pkl")
-download_file("1kWakzDE21nU-rplidm_RN4sc4nyWZ5Sd", "vectors.pkl")
-download_file("19DNrX3z2PBA2LPApSsCpJ3FGS53wIxF9", "indices.pkl")
-download_file("1XDhcEuHe-H4-D7dRND11EB0_z2RWMZaW", "co_occurrence.pkl")
 # -----------------------------
-# LOAD FILES
+# LOAD EVERYTHING SAFELY
 # -----------------------------
-
-@st.cache_data
-def load_data():
-    df_cb = pd.read_pickle("df_cb.pkl")
-    return df_cb
-
 @st.cache_resource
-def load_models():
+def load_all():
+
+    def download(file_id, output):
+        if not os.path.exists(output):
+            url = f"https://drive.google.com/uc?id={file_id}"
+            gdown.download(url, output, quiet=False, fuzzy=True)
+
+    # 🔥 Download files INSIDE cache
+    download("1aX1nG0veHY7ydmeBGKNTT9nXCMc41Cqf", "df_cb.pkl")
+    download("1ZQtSeT4l7nFwHKcUMxdJYw207gW4LQ3x", "cv.pkl")
+    download("1kWakzDE21nU-rplidm_RN4sc4nyWZ5Sd", "vectors.pkl")
+    download("19DNrX3z2PBA2LPApSsCpJ3FGS53wIxF9", "indices.pkl")
+    download("1XDhcEuHe-H4-D7dRND11EB0_z2RWMZaW", "co_occurrence.pkl")
+
+    # 🔥 Load files
+    df_cb = pd.read_pickle("df_cb.pkl")
     tfidf = pickle.load(open("cv.pkl", "rb"))
     tfidf_matrix = pickle.load(open("vectors.pkl", "rb"))
     indices = pickle.load(open("indices.pkl", "rb"))
-    co_occurrence = pickle.load(open("co_occurrence.pkl", "rb"))  # ✅ ADD THIS
-    return tfidf, tfidf_matrix, indices, co_occurrence
+    co_occurrence = pickle.load(open("co_occurrence.pkl", "rb"))
 
-df_cb = load_data()
-tfidf, tfidf_matrix, indices, co_occurrence = load_models()
+    return df_cb, tfidf, tfidf_matrix, indices, co_occurrence
 
+
+# -----------------------------
+# UI SETTINGS
+# -----------------------------
+st.set_page_config(page_title="🛍️ Recommender", layout="wide")
+
+st.title("🛍️ Smart Product Recommender")
+st.markdown("#### 🔎 Search products and get smart recommendations instantly")
+
+# 🔥 Load AFTER UI (prevents 502 crash)
+with st.spinner("Loading model... please wait ⏳"):
+    df_cb, tfidf, tfidf_matrix, indices, co_occurrence = load_all()
 
 # -----------------------------
 # ENSURE REAL RATINGS
@@ -109,13 +114,8 @@ def recommend_association(asin, top_n=5):
     return df_cb[df_cb['asin'].isin(top_items)][['asin', 'title', 'image', 'rating', 'num_reviews']]
 
 # -----------------------------
-# UI SETTINGS
+# SESSION STATE
 # -----------------------------
-st.set_page_config(page_title="🛍️ Recommender", layout="wide")
-
-st.title("🛍️ Smart Product Recommender")
-st.markdown("#### 🔎 Search products and get smart recommendations instantly")
-
 if 'selected_asin' not in st.session_state:
     st.session_state.selected_asin = None
 
@@ -142,10 +142,8 @@ if query:
             stars = render_stars(rating)
             rating = f"{row['rating']:.1f}"
 
-            # ✅ IMAGE FIRST (NO WRAPPER)
             st.image(row['image'], width=150)
 
-            # ✅ TEXT BELOW IMAGE
             st.markdown(f"""
             <p style="font-size:14px; height:40px; overflow:hidden;">
                 {title}
