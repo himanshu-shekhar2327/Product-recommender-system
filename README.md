@@ -15,6 +15,10 @@ This project simulates an **Amazon-like recommendation engine** with:
 
 ---
 
+## Live Demo
+
+🔗 [Open the Streamlit App](https://recommender-system-amazon.streamlit.app/)
+
 ## 📊 Dataset
 
 This project uses the official Amazon dataset:
