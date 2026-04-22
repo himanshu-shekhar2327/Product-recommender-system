@@ -192,24 +192,16 @@ The app automatically downloads required files:
 
 ## 🚀 Deployment
 
-This project is currently designed for local execution.
-
+This project is successfully deployed using streamlit Cloud
 In future, it can be deployed using platforms like:
 
-- Streamlit Cloud  
-- Render  
-- AWS / Cloud-based servers  
+### 📌 Notes:
+- Model files are dynamically loaded using external storage
+- Initial load time may be higher due to large model size
+- Optimizations can further improve performance in production environments  
 
 ---
 
-
-### 📌 Note:
-Due to large model files and dataset size, deployment requires optimization such as:
-- Reducing model size  
-- Preloading model artifacts on server  
-- Using efficient storage solutions (e.g., cloud storage/CDN)  
-
----
 
 ## 🚀 Future Improvements
 
